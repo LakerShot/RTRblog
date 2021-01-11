@@ -1,6 +1,5 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-
 import { IReg } from '../types/interfaces';
 import { login } from '../actions/actions';
 import { Alert } from 'antd';
@@ -16,31 +15,32 @@ const AuthPage: React.FC<IReg> = () => {
 
   const onSubmit = (data: any) => {
     const { email, password } = data;
-    const result = {
+    const userCredentials = {
       user: {
         email,
         password,
       },
     };
-    dispatch(login(result));
+    dispatch(login(userCredentials));
   };
 
-  return (
+  return ( 
     <div className='reg-page'>
       {isAuthError && (
         <Alert
-          message='Ошибка авторизации'
-          description='Не правильно введённый пароль или email'
+          message='Authorization error'
+          description='Invalid password or email. Please try it again'
           type='error'
+          closable={true}
         />
       )}
       {isAuth && <Redirect from='/sign-in' to='/articles' />}
       <div className='form'>
         <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
-          <fieldset>
-            <legend>Sign In</legend>
+            <h1 className="form__title">Sign In</h1>
 
             <input
+              className="form__input"
               placeholder='Email'
               type='text'
               name='email'
@@ -51,12 +51,13 @@ const AuthPage: React.FC<IReg> = () => {
             />
             {errors.email && <span className='no-valid'>No valid email</span>}
             <input
+              className="form__input"
               name='password'
               type='password'
               placeholder='Password'
               ref={register({
                 required: 'Enter your password',
-                minLength: 8,
+                minLength: 6,
                 maxLength: 40,
               })}
             />
@@ -67,9 +68,8 @@ const AuthPage: React.FC<IReg> = () => {
             )}
             <button className='submit-btn'>login</button>
             <p className='message'>
-              Already registered? <Link to='/sign-up'>Sign Up</Link>
+              Don't have accaunt ? <Link to='/sign-up'>Sign Up</Link>
             </p>
-          </fieldset>
         </form>
       </div>
     </div>

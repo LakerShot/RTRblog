@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
 import ServicesApi from '../../services/servicesAPI';
-
 import { Modal, Button } from 'antd';
 
 const ChangePostButtons: React.FC<any> = ({ slug, token }): JSX.Element => {
   const [visible, setVisible] = useState(false);
 
   const api = new ServicesApi();
-  let history = useHistory();
+  const history = useHistory();
 
   const showModal = () => {
     setVisible(true);
@@ -29,14 +27,14 @@ const ChangePostButtons: React.FC<any> = ({ slug, token }): JSX.Element => {
 
   return (
     <div className='private-btn'>
-      <Link to={`${slug}/edit`}>
-        <Button danger>Edit</Button>
-      </Link>
-      <Button type='primary' danger onClick={showModal}>
+      <Button danger className="btn btn-danger" onClick={showModal}>
         Delete
       </Button>
+      <Link to={`${slug}/edit`}>
+        <Button className="btn btn-edit">Edit</Button>
+      </Link>
       <Modal visible={visible} onOk={handleOk} onCancel={handleCancel}>
-        <p>Удалить этот пост?</p>
+        <p>Delete this post ?</p>
       </Modal>
     </div>
   );

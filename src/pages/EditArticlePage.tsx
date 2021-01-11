@@ -1,8 +1,6 @@
 import React from 'react';
-
 import servicesApi from '../services/servicesAPI';
 import { useHistory } from 'react-router-dom';
-
 import { useSelector } from 'react-redux';
 import ArticlePostForm from '../components/ArticlePostForm';
 import { ISlug } from '../types/interfaces';

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
 import { addArticleTag } from '../../actions/actions';
-
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
@@ -20,12 +18,15 @@ const ArticlePostForm: React.FC<IPostForm> = ({
   const [value, setValue] = useState<string>('');
   const { register, handleSubmit, errors } = useForm();
 
-  let uniqId = 100;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(addArticleTag(tags));
   }, [dispatch, tags]);
+
+  const generateKey = (pre: string) => {
+    return `${new Date().getTime()}_${ pre }`;
+  }
 
   const onChangeTagValue = (e: any): void => {
     setValue(e.target.value);
@@ -42,18 +43,16 @@ const ArticlePostForm: React.FC<IPostForm> = ({
   const removeTag = (e: any): void => {
     e.preventDefault();
     const itemId = e.target.getAttribute('data-id');
-    const newArr = tags.filter((element, id) => id !== +itemId);
+    const newArr = tags.filter((_, id) => id !== +itemId);
     setTags(newArr);
   };
 
   const createTags = () => {
     return tags.map((el, i) => {
       return (
-        <li key={`${++uniqId}_${el}`}>
-          <span>{el}</span>
-          <button data-id={i} onClick={removeTag}>
-            Delete
-          </button>
+        <li key={generateKey(el)} className="tag-list__element">
+          <span className="tag-list__title">{el}</span>
+          <button data-id={i} onClick={removeTag} className="tag-list__remove">Delete</button>
         </li>
       );
     });
@@ -61,11 +60,8 @@ const ArticlePostForm: React.FC<IPostForm> = ({
   return (
     <div className='create-article'>
       <form onSubmit={handleSubmit(submit)}>
-        <fieldset>
-          <legend>{legend}</legend>
-          <label htmlFor='title' className='create-article__label'>
-            Title:
-          </label>
+          <h3 className='create-article__title'>{legend}</h3>
+          <label htmlFor='title' className='create-article__label'>Title:</label>
           <input
             type='text'
             className='create-article__input'
@@ -73,17 +69,11 @@ const ArticlePostForm: React.FC<IPostForm> = ({
             ref={register({
               required: true,
               minLength: 3,
-              maxLength: 100,
+              maxLength: 50,
             })}
           />
-          {errors.title && (
-            <span className='no-valid'>
-              Title must have at least from 4 to 100 characters
-            </span>
-          )}
-          <label htmlFor='title' className='create-article__label'>
-            Short Description:
-          </label>
+          {errors.title && (<span className='no-valid'>Title must have at least from 4 to 50 characters</span>)}
+          <label htmlFor='title' className='create-article__label'>Short Description:</label>
           <input
             type='text'
             className='create-article__input'
@@ -91,36 +81,25 @@ const ArticlePostForm: React.FC<IPostForm> = ({
             ref={register({
               required: true,
               minLength: 10,
-              maxLength: 250,
+              maxLength: 100,
             })}
           />
-          {errors.description && (
-            <span className='no-valid'>
-              Description must have at least from 10 to 250 characters
-            </span>
-          )}
+          {errors.description && (<span className='no-valid'>Description must have at least from 10 to 100 characters</span>)}
 
-          <label htmlFor='title' className='create-article__label'>
-            Text:
-          </label>
+          <label htmlFor='title' className='create-article__label'>Text:</label>
           <textarea
             className='create-article__input'
             name='text'
             ref={register({
               required: true,
               minLength: 50,
-              maxLength: 4000,
+              maxLength: 3000,
             })}
           />
-          {errors.text && (
-            <span className='no-valid'>
-              Text must have at least from 50 characters
-            </span>
-          )}
-          <div className='create-article__tags'>
+          {errors.text && (<span className='no-valid'>Text must have at least from 50 characters</span>)}
+          <div className='create-article__tags tags'>
+            <h4 className="tags__title">Tags</h4>
             <div className='tags d-flex'>
-              <fieldset>
-                <legend>Add tags</legend>
                 <input
                   type='text'
                   name='tags'
@@ -131,20 +110,12 @@ const ArticlePostForm: React.FC<IPostForm> = ({
                     maxLength: 20,
                   })}
                 />
-                {errors.tags && (
-                  <span className='no-valid'>
-                    Tag must have at least from 2 to 20 characters
-                  </span>
-                )}
-                <button className='add-tag' onClick={onSubmitNewTask}>
-                  Add tag
-                </button>
-              </fieldset>
+                {errors.tags && (<span className='no-valid'>Tag must have at least from 2 to 20 characters</span>)}
+                <button className='add-tag' onClick={onSubmitNewTask} >Add tag</button>
             </div>
             {tags.length !== 0 && <ul className='tag-list'>{createTags()}</ul>}
           </div>
-          <button type='submit'>Create post</button>
-        </fieldset>
+          <button type='submit' className="btn btn-submit">Send</button>
       </form>
     </div>
   );
