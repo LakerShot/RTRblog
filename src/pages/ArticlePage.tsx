@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Typography, Avatar, Spin } from 'antd';
-
 import { ISlug } from '../types/interfaces';
 import { getSinglePostRequest } from '../actions/actions';
 import ChangePostButtons from '../components/ChangePostButtons';
@@ -13,9 +11,7 @@ const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
   const { isAuth, user } = useSelector((state: any) => state.isAuthentication);
   const { Title, Paragraph } = Typography;
   const token = isAuth && user.token;
-  const { post, isFetchingSinglePost, favoritePostsCount } = useSelector(
-    (state: any) => state
-  );
+  const { post, isFetchingSinglePost, favoritePostsCount } = useSelector((state: any) => state);
   const {
     title,
     body,
@@ -32,11 +28,8 @@ const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
   }, [dispatch, match.params.slug, token, favoritePostsCount]);
 
   const localStorageData: any = localStorage.getItem('login');
-
-  const authUser: any =
-    localStorageData && JSON.parse(localStorageData).user.username;
-  const authToken: any =
-    localStorageData && JSON.parse(localStorageData).user.token;
+  const authUser: any = localStorageData && JSON.parse(localStorageData).user.username;
+  const authToken: any = localStorageData && JSON.parse(localStorageData).user.token;
 
   const createTagList = tagList && (
     <ul className='tab__list'>
@@ -49,12 +42,12 @@ const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
   );
 
   const content: any = !isFetchingSinglePost && (
-    <>
-      {authUser && authUser === author.username && (
+    <div className="article-container">
+      {/* {authUser && authUser === author.username && (
         <ChangePostButtons slug={match.params.slug} token={authToken} />
-      )}
+      )} */}
 
-      <div className='d-flex justify-content-between mt-4'>
+      <div className='post d-flex justify-content-between'>
         <div className='d-flex'>
           <Title className='pr-3' level={4}>
             {title}
@@ -71,15 +64,29 @@ const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
             <span className='d-block text-center'>{author.username}</span>
             <span className='text-center'>{createdAt.substring(0, 10)}</span>
           </div>
+          <div>
 
+          </div>
           <Avatar src={author.image} alt='Han Solo' />
+          {/* {authUser && authUser === author.username && (
+           <ChangePostButtons slug={match.params.slug} token={authToken} />
+          )} */}
         </div>
       </div>
-      {createTagList}
+      <div className='d-flex justify-content-between'>
+        <div className="tags">
+          {createTagList}
+        </div>
+        <div className="actions">
+          {authUser && authUser === author.username && (
+           <ChangePostButtons slug={match.params.slug} token={authToken} />
+          )}
+        </div>
+      </div>
       <p>{description}</p>
 
       <Paragraph>{body}</Paragraph>
-    </>
+    </div>
   );
 
   return isFetchingSinglePost ? <Spin size='large' /> : content;

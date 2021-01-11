@@ -2,14 +2,11 @@ import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, Link } from 'react-router-dom';
 import { IReg } from '../types/interfaces';
-
 import { Alert } from 'antd';
-
 import ServicesApi from '../services/servicesAPI';
 
 const RegistrationPage: React.FC<IReg> = () => {
   const [error, setError] = useState<boolean>(false);
-
   const { register, handleSubmit, watch, errors } = useForm<IReg>();
 
   const password = useRef({});
@@ -19,7 +16,7 @@ const RegistrationPage: React.FC<IReg> = () => {
     setError(false);
   };
 
-  let history = useHistory();
+  const history = useHistory();
 
   const onSubmit = (data: any) => {
     const api = new ServicesApi();
@@ -33,7 +30,7 @@ const RegistrationPage: React.FC<IReg> = () => {
     };
     api
       .registration(result)
-      .then(() => history.push('/succes'))
+      .then(() => history.push('/sign-in'))
       .catch(() => setError(true));
   };
 
@@ -41,8 +38,8 @@ const RegistrationPage: React.FC<IReg> = () => {
     <div className='reg-page'>
       {error && (
         <Alert
-          message='Ошибка регистрации'
-          description='Пользователь с таким именем или email уже зарегистрирован'
+          message='Sign Up Error'
+          description='This email has been taken by another user'
           type='error'
           closable
           onClose={errorAlerClose}
@@ -50,8 +47,7 @@ const RegistrationPage: React.FC<IReg> = () => {
       )}
       <div className='form'>
         <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
-          <fieldset>
-            <legend>Sign Up</legend>
+            <h1 className="form__title">Sign Up</h1>
             <input
               type='text'
               placeholder='Name'
@@ -64,6 +60,7 @@ const RegistrationPage: React.FC<IReg> = () => {
               </span>
             )}
             <input
+              className="form__input"
               placeholder='Email'
               type='text'
               name='email'
@@ -74,27 +71,29 @@ const RegistrationPage: React.FC<IReg> = () => {
             />
             {errors.email && <span className='no-valid'>No valid email</span>}
             <input
+              className="form__input"
               name='password'
               type='password'
               placeholder='password'
               ref={register({
                 required: 'Enter your password',
-                minLength: 8,
-                maxLength: 40,
+                minLength: 6,
+                maxLength: 40, 
               })}
             />
             {errors.password && (
               <span className='no-valid'>
-                Password must have at least from 8 to 40 characters
+                Password must have at least from 6 to 40 characters
               </span>
             )}
             <input
+              className="form__input"
               type='password'
               name='password_repeat'
               placeholder='repeat password'
               ref={register({
                 validate: (value) =>
-                  value === password.current || 'The passwords do not match',
+                  value === password.current || 'The passwords do not matches',
               })}
             />
             {errors.password_repeat && (
@@ -103,9 +102,8 @@ const RegistrationPage: React.FC<IReg> = () => {
 
             <button className='submit-btn'>create</button>
             <p className='message'>
-              Already registered? <Link to='/sign-in'>Sign In</Link>
+              Already has an accaunt? <Link to='/sign-in'>Sign In</Link>
             </p>
-          </fieldset>
         </form>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-
 import { Alert } from 'antd';
 import ServicesApi from '../services/servicesAPI';
 
@@ -44,11 +43,11 @@ const ProfilePage: React.FC = (): JSX.Element => {
 
   const content: JSX.Element = (
     <>
+        {succes && <Alert message='Успешно изменено!' type='success' closable={true} />}
       <div className='profile-info'>
-        {succes && <Alert message='Успешно изменено!' type='success' />}
         {error && <Alert message='Такое имя или email занято!' type='error' />}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor='username'>username:</label>
+        <form onSubmit={handleSubmit(onSubmit)} className="form">
+          <label htmlFor='username' className="profile-info__label">Username:</label>
           <input
             name='username'
             type='text'
@@ -64,7 +63,7 @@ const ProfilePage: React.FC = (): JSX.Element => {
               Username must have at least from 3 to 20 characters
             </span>
           )}
-          <label htmlFor='email'>email:</label>
+          <label htmlFor='email' className="profile-info__label">Email:</label>
           <input
             name='email'
             type='text'
@@ -75,7 +74,7 @@ const ProfilePage: React.FC = (): JSX.Element => {
             })}
           />
           {errors.email && <span className='no-valid'>No valid email</span>}
-          <label htmlFor=''>image:</label>
+          <label htmlFor='' className="profile-info__label">Image:</label>
           <input
             name='image'
             type='text'
@@ -85,8 +84,9 @@ const ProfilePage: React.FC = (): JSX.Element => {
             })}
           />
           {errors.image && <span className='no-valid'>No valid image url</span>}
-          <label htmlFor=''>about:</label>
+          <label htmlFor='' className="profile-info__label" style={{marginBottom: '10px'}}>About:</label>
           <textarea
+            className="profile-info__textarea"
             name='bio'
             defaultValue={userInfo.bio}
             ref={register({
@@ -99,7 +99,7 @@ const ProfilePage: React.FC = (): JSX.Element => {
               Value must have at least from 10 to 550 characters
             </span>
           )}
-          <button type='submit'>Изменить</button>
+          <button className="profile-info__submit" type='submit'>Change</button>
         </form>
       </div>
     </>

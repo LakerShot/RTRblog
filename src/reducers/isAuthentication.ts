@@ -6,10 +6,7 @@ const isAuthenticationReducerDefaultState: IAuth = {
   user: null,
 };
 
-export default (
-  state: object = isAuthenticationReducerDefaultState,
-  action: any
-) => {
+export default (state: object = isAuthenticationReducerDefaultState, action: any) => {
   switch (action.type) {
     case 'SET_USER_DATA':
       return {

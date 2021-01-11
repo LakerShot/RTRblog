@@ -2,9 +2,7 @@ import React from 'react';
 import { Tooltip } from 'antd';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { changeFavotitesPost } from '../../actions/actions';
-
 import servicesApi from '../../services/servicesAPI';
 
 const FavoriteCountBtn: React.FC<any> = ({
@@ -27,7 +25,7 @@ const FavoriteCountBtn: React.FC<any> = ({
   return (
     <Tooltip
       key='comment-basic-like-sdasf'
-      title={!isAuth ? 'Требуется авторизация' : 'Мне нравится'}
+      title={!isAuth ? 'Not authorized' : 'Like'}
     >
       <button
         className='post__like_btn'
