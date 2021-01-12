@@ -87,9 +87,9 @@
     "import/prefer-default-export": "off",
     "react/no-unescaped-entities": "off",
     "jsx-a11y/click-events-have-key-events": "off",
-    " jsx-a11y/no-noninteractive-element-interactions": "off"
+    " jsx-a11y/no-noninteractive-element-interactions": "off",
     // "semi": [2, "never"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
+    "react/jsx-filename-extension": "off",
     "import/extensions": [
       "warn",
       "ignorePackages",
