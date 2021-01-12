@@ -6,7 +6,7 @@ import ArticlePostForm from '../components/ArticlePostForm';
 import { ISlug } from '../types/interfaces';
 
 const EditArticlePage: React.FC<ISlug> = ({ match }): JSX.Element => {
-  let history = useHistory();
+  const history = useHistory();
 
   const { user } = useSelector((state: any) => state.isAuthentication);
 

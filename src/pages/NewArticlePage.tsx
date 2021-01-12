@@ -12,7 +12,7 @@ const NewArticlePage: React.FC = (): any => {
   const onSubmit = (data: any) => {
     const api = new servicesApi();
     const { title, description, text } = data;
-    const result = {
+    const result = { 
       article: {
         title,
         description,

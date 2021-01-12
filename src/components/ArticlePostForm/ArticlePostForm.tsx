@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { addArticleTag } from '../../actions/actions';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 interface IPostForm {
   submit: any;
   legend: string;
   postTags: string[] | null;
 }
 
-const ArticlePostForm: React.FC<IPostForm> = ({
-  submit,
-  legend,
-  postTags,
-}): JSX.Element => {
+const ArticlePostForm: React.FC<IPostForm> = ({ submit, legend, postTags, }): JSX.Element => {
   const [tags, setTags] = useState<string[]>([]);
   const [value, setValue] = useState<string>('');
   const { register, handleSubmit, errors } = useForm();
-
+  const state = useSelector((state: any) => state.post);
+  console.log(state)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,6 +53,7 @@ const ArticlePostForm: React.FC<IPostForm> = ({
       );
     });
   };
+
   return (
     <div className='create-article'>
       <form onSubmit={handleSubmit(submit)}>
