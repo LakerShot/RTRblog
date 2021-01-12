@@ -4,7 +4,6 @@ import ArticlesListPage from '../pages/ArticlesListPage';
 import ArticlePage from '../pages/ArticlePage';
 import AuthPage from '../pages/AuthPage';
 import RegPage from '../pages/RegPage';
-import SuccesPage from '../pages/SuccesPage';
 import ProfilePage from '../pages/ProfilePage';
 import NewArticlePage from '../pages/NewArticlePage';
 import EditArticlePage from '../pages/EditArticlePage';
@@ -24,7 +23,6 @@ const PagesContainer: React.FC = (): JSX.Element => {
       <Route path='/sign-up' component={RegPage} />
       <Route path='/articles' component={ArticlesListPage} exact />
       <Route path='/articles/:slug' component={ArticlePage} exact />
-      <Route path='/succes' component={SuccesPage} />
       <PrivateRoute path='/profile' component={ProfilePage} exact />
       <PrivateRoute path='/new-article' component={NewArticlePage} />
       <PrivateRoute path='/articles/:slug/edit' component={EditArticlePage} exact/>

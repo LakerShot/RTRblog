@@ -43,9 +43,9 @@ const ProfilePage: React.FC = (): JSX.Element => {
 
   const content: JSX.Element = (
     <>
-        {succes && <Alert message='Успешно изменено!' type='success' closable={true} />}
+      {succes && <Alert message='Changed successfully!' type='success' closable={true} />}
       <div className='profile-info'>
-        {error && <Alert message='Такое имя или email занято!' type='error' />}
+        {error && <Alert message='This name or email already has been taken' type='error' />}
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <label htmlFor='username' className="profile-info__label">Username:</label>
           <input
@@ -58,11 +58,7 @@ const ProfilePage: React.FC = (): JSX.Element => {
               maxLength: 40,
             })}
           />
-          {errors.username && (
-            <span className='no-valid'>
-              Username must have at least from 3 to 20 characters
-            </span>
-          )}
+          {errors.username && (<span className='no-valid'>Username must have at least from 3 to 20 characters</span>)}
           <label htmlFor='email' className="profile-info__label">Email:</label>
           <input
             name='email'
@@ -91,14 +87,10 @@ const ProfilePage: React.FC = (): JSX.Element => {
             defaultValue={userInfo.bio}
             ref={register({
               minLength: 10,
-              maxLength: 550,
+              maxLength: 200,
             })}
           />
-          {errors.bio && (
-            <span className='no-valid'>
-              Value must have at least from 10 to 550 characters
-            </span>
-          )}
+          {errors.bio && (<span className='no-valid'>Value must have at least from 10 to 200 characters</span>)}
           <button className="profile-info__submit" type='submit'>Change</button>
         </form>
       </div>

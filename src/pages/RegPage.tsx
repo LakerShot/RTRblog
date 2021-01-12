@@ -81,11 +81,7 @@ const RegistrationPage: React.FC<IReg> = () => {
                 maxLength: 40, 
               })}
             />
-            {errors.password && (
-              <span className='no-valid'>
-                Password must have at least from 6 to 40 characters
-              </span>
-            )}
+            {errors.password && (<span className='no-valid'>Password must have at least from 6 to 40 characters</span>)}
             <input
               className="form__input"
               type='password'
@@ -96,9 +92,7 @@ const RegistrationPage: React.FC<IReg> = () => {
                   value === password.current || 'The passwords do not matches',
               })}
             />
-            {errors.password_repeat && (
-              <span className='no-valid'>{errors.password_repeat.message}</span>
-            )}
+            {errors.password_repeat && (<span className='no-valid'>{errors.password_repeat.message}</span>)}
 
             <button className='submit-btn'>create</button>
             <p className='message'>
