@@ -1,3 +1,4 @@
+// eslint-disable-file
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Comment, Tooltip, Avatar } from 'antd';
@@ -16,13 +17,8 @@ const ArticlesPost: React.FC<any> = ({
   history,
   favorited,
 }): JSX.Element => {
-  const actions = [
-    <FavoriteCountBtn
-      count={favoritesCount}
-      slug={slug}
-      favorited={favorited}
-    />,
-  ];
+  // eslint-disable-next-line
+  const actions = [<FavoriteCountBtn count={favoritesCount} slug={slug} favorited={favorited} />];
 
   return (
     <Comment
@@ -30,7 +26,7 @@ const ArticlesPost: React.FC<any> = ({
       content={
         <div className="post">
           <div className="post__info">
-            <h2 className='post__title' onClick={() => history.push(`/articles/${slug}`)}>
+            <h2 className="post__title" onClick={() => history.push(`/articles/${slug}`)}>
               {title}
             </h2>
             <span className="post__dateAt">
@@ -38,18 +34,18 @@ const ArticlesPost: React.FC<any> = ({
                 <small>{createdAt.substring(0, 10)}</small>
               </Tooltip>
             </span>
-            <ul className='tab__list'>
+            <ul className="tab__list">
               {tagList.map((el: string) => (
-                <li key={`tags_${el}`} className='tab__list_item'>
+                <li key={`tags_${el}`} className="tab__list_item">
                   {el}
                 </li>
               ))}
             </ul>
-            <p className='post__description'>{description}</p>
+            <p className="post__description">{description}</p>
           </div>
           <div className="post__user">
             <span className="post__username">{author.username}</span>
-            <Avatar src={author.image} alt='author' icon={userLogoNotFound}/>
+            <Avatar src={author.image} alt="author" icon={userLogoNotFound} />
           </div>
         </div>
       }

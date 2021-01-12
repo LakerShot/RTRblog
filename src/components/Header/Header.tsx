@@ -20,30 +20,36 @@ const Header: React.FC = (): JSX.Element => {
   };
 
   const createInfoProfile: JSX.Element = (
-    <div className='d-flex align-center' key='info-profile'>
-      <Link to='/new-article'>
-        <span className='new-post-link'>Add New Post</span>
+    <div className="d-flex align-center" key="info-profile">
+      <Link to="/new-article">
+        <span className="new-post-link">Add New Post</span>
       </Link>
 
-      <div className='profile-group'>
-        <span className='d-block'>{isAuth && user.username}</span>
+      <div className="profile-group">
+        <span className="d-block">{isAuth && user.username}</span>
       </div>
-      <Link to='/profile'>
-        <div className='avatar'>
-          <img src={userAvatars} alt='avatar' />
+      <Link to="/profile">
+        <div className="avatar">
+          <img src={userAvatars} alt="avatar" />
         </div>
       </Link>
-      <button className="log-out" onClick={handlerLogOut}>Log out</button>
+      <button className="log-out" onClick={handlerLogOut}>
+        Log out
+      </button>
     </div>
   );
 
   const notAuthContent: JSX.Element = (
-    <React.Fragment key='auth-btn'>
+    <React.Fragment key="auth-btn">
       <Button>
-        <Link className="header_link" to='/sign-in'>Sign In</Link>
+        <Link className="header_link" to="/sign-in">
+          Sign In
+        </Link>
       </Button>
       <Button>
-        <Link className="header_link" to='/sign-up'>Sign Up</Link>
+        <Link className="header_link" to="/sign-up">
+          Sign Up
+        </Link>
       </Button>
     </React.Fragment>
   );
@@ -51,12 +57,12 @@ const Header: React.FC = (): JSX.Element => {
   return (
     <PageHeader
       title={
-        <span className='header__title'>
-          <Link to='/'>RTRblog</Link>
+        <span className="header__title">
+          <Link to="/">RTRblog</Link>
         </span>
       }
       extra={[isAuth ? createInfoProfile : notAuthContent]}
-    ></PageHeader>
+    />
   );
 };
 

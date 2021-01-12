@@ -21,20 +21,20 @@ const AppContainer: React.FC = (): JSX.Element => {
   const mainStyle = {
     width: '1400px',
     margin: '0 auto',
-    maxWidth: '90%'
-  }
+    maxWidth: '90%',
+  };
   const headerStyle = {
     backgroundColor: 'white',
-    padding: '0 60px'
-  }
+    padding: '0 60px',
+  };
 
   return (
-    <div className='app'>
+    <div className="app">
       <Router>
-        <nav className='app__header' style={headerStyle}>
+        <nav className="app__header" style={headerStyle}>
           <Header />
         </nav>
-        <main className='app__main' style={mainStyle}>
+        <main className="app__main" style={mainStyle}>
           <PagesContainer />
         </main>
       </Router>

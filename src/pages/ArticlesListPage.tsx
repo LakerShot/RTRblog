@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Pagination, Spin } from 'antd';
-import ArticlesPost from '../components/ArticlesPost';
 import { useSelector, useDispatch } from 'react-redux';
+import ArticlesPost from '../components/ArticlesPost';
 import { getPostRequest } from '../actions/actions';
 
 const ArticlesListPage: React.FC = () => {
@@ -19,7 +19,7 @@ const ArticlesListPage: React.FC = () => {
 
   const changePaginations = (count: number): number => {
     if (count !== 1) {
-      return +(count + '0');
+      return +`${count}0`;
     }
     return count;
   };
@@ -47,7 +47,7 @@ const ArticlesListPage: React.FC = () => {
 
   return (
     <>
-      {!isFetchingAllPosts ? createPostsList : <Spin size='large' />}
+      {!isFetchingAllPosts ? createPostsList : <Spin size="large" />}
       <Pagination
         style={{ display: isFetchingAllPosts ? 'none' : 'flex' }}
         showSizeChanger={false}

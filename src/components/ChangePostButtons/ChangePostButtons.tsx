@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import ServicesApi from '../../services/servicesAPI';
 import { Modal, Button } from 'antd';
+import ServicesApi from '../../services/servicesAPI';
 
 const ChangePostButtons: React.FC<any> = ({ slug, token }): JSX.Element => {
   const [visible, setVisible] = useState(false);
@@ -26,7 +26,7 @@ const ChangePostButtons: React.FC<any> = ({ slug, token }): JSX.Element => {
   };
 
   return (
-    <div className='private-btn'>
+    <div className="private-btn">
       <Button danger className="btn btn-danger" onClick={showModal}>
         Delete
       </Button>

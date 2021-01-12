@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { Result } from 'antd';
 import ArticlesListPage from '../pages/ArticlesListPage';
 import ArticlePage from '../pages/ArticlePage';
 import AuthPage from '../pages/AuthPage';
@@ -9,23 +10,20 @@ import NewArticlePage from '../pages/NewArticlePage';
 import EditArticlePage from '../pages/EditArticlePage';
 import PrivateRoute from '../helpers/PrivateRoute';
 import DefaultRoute from '../helpers/DefaultRoute';
-import { Result } from 'antd';
 
 const PagesContainer: React.FC = (): JSX.Element => {
-  const NotFoundPage: JSX.Element = (
-    <Result status='404' title='404' subTitle='Sorry, this page does not exist :('/>
-  );
+  const NotFoundPage: JSX.Element = <Result status="404" title="404" subTitle="Sorry, this page does not exist :(" />;
 
   return (
-    <Switch> 
-      <DefaultRoute path='/' component={ArticlesListPage} exact />
-      <Route path='/sign-in' component={AuthPage} />
-      <Route path='/sign-up' component={RegPage} />
-      <Route path='/articles' component={ArticlesListPage} exact />
-      <Route path='/articles/:slug' component={ArticlePage} exact />
-      <PrivateRoute path='/profile' component={ProfilePage} exact />
-      <PrivateRoute path='/new-article' component={NewArticlePage} />
-      <PrivateRoute path='/articles/:slug/edit' component={EditArticlePage} exact/>
+    <Switch>
+      <DefaultRoute path="/" component={ArticlesListPage} exact />
+      <Route path="/sign-in" component={AuthPage} />
+      <Route path="/sign-up" component={RegPage} />
+      <Route path="/articles" component={ArticlesListPage} exact />
+      <Route path="/articles/:slug" component={ArticlePage} exact />
+      <PrivateRoute path="/profile" component={ProfilePage} exact />
+      <PrivateRoute path="/new-article" component={NewArticlePage} />
+      <PrivateRoute path="/articles/:slug/edit" component={EditArticlePage} exact />
       <Route render={() => NotFoundPage} />
     </Switch>
   );

@@ -12,16 +12,7 @@ const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
   const { Title, Paragraph } = Typography;
   const token = isAuth && user.token;
   const { post, isFetchingSinglePost, favoritePostsCount } = useSelector((state: any) => state);
-  const {
-    title,
-    body,
-    createdAt,
-    favoritesCount,
-    favorited,
-    tagList,
-    description,
-    author,
-  } = post;
+  const { title, body, createdAt, favoritesCount, favorited, tagList, description, author } = post;
 
   useEffect(() => {
     dispatch(getSinglePostRequest(match.params.slug, token));
@@ -32,9 +23,9 @@ const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
   const authToken: any = localStorageData && JSON.parse(localStorageData).user.token;
 
   const createTagList = tagList && (
-    <ul className='tab__list'>
+    <ul className="tab__list">
       {tagList.map((el: string) => (
-        <li key={`tags_${el}`} className='tab__list_item'>
+        <li key={`tags_${el}`} className="tab__list_item">
           {el}
         </li>
       ))}
@@ -47,40 +38,30 @@ const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
         <ChangePostButtons slug={match.params.slug} token={authToken} />
       )} */}
 
-      <div className='post d-flex justify-content-between'>
-        <div className='d-flex'>
-          <Title className='pr-3' level={4}>
+      <div className="post d-flex justify-content-between">
+        <div className="d-flex">
+          <Title className="pr-3" level={4}>
             {title}
           </Title>
-          <FavoriteCountBtn
-            count={favoritesCount}
-            slug={match.params.slug}
-            favorited={favorited}
-          />
+          <FavoriteCountBtn count={favoritesCount} slug={match.params.slug} favorited={favorited} />
         </div>
 
-        <div className='author d-flex'>
-          <div className='pr-3'>
-            <span className='d-block text-center'>{author.username}</span>
-            <span className='text-center'>{createdAt.substring(0, 10)}</span>
+        <div className="author d-flex">
+          <div className="pr-3">
+            <span className="d-block text-center">{author.username}</span>
+            <span className="text-center">{createdAt.substring(0, 10)}</span>
           </div>
-          <div>
-
-          </div>
-          <Avatar src={author.image} alt='Han Solo' />
+          <div />
+          <Avatar src={author.image} alt="Han Solo" />
           {/* {authUser && authUser === author.username && (
            <ChangePostButtons slug={match.params.slug} token={authToken} />
           )} */}
         </div>
       </div>
-      <div className='d-flex justify-content-between'>
-        <div className="tags">
-          {createTagList}
-        </div>
+      <div className="d-flex justify-content-between">
+        <div className="tags">{createTagList}</div>
         <div className="actions">
-          {authUser && authUser === author.username && (
-           <ChangePostButtons slug={match.params.slug} token={authToken} />
-          )}
+          {authUser && authUser === author.username && <ChangePostButtons slug={match.params.slug} token={authToken} />}
         </div>
       </div>
       <p>{description}</p>
@@ -89,7 +70,7 @@ const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
     </div>
   );
 
-  return isFetchingSinglePost ? <Spin size='large' /> : content;
+  return isFetchingSinglePost ? <Spin size="large" /> : content;
 };
 
 export default ArticlePage;
