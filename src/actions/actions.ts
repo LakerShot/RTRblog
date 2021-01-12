@@ -1,51 +1,51 @@
 import { IAuth } from './../types/interfaces';
-import { AppActions } from './../types/actions';
+import { AppActions, ADD_POSTS, ADD_SINGLE_POST, LOADING_ALL_POSTS, LOADING_SINGLE_POST, AUTHENTICATION_ERROR, SET_USER_DATA, LOG_OUT, ADD_POST_TAG, FAVORITE_POST } from './../types/actions';
 import { Dispatch } from 'redux';
 import ServicesApi from '../services/servicesAPI';
 
 import { IPosts } from '../types/interfaces';
 
 export const addPost = (posts: Array<IPosts>): AppActions => ({
-  type: 'ADD_POSTS',
+  type: ADD_POSTS,
   posts,
 });
 
 export const addSinglePost = (post: Array<IPosts>): AppActions => ({
-  type: 'ADD_SINGLE_POST',
+  type: ADD_SINGLE_POST,
   post,
 });
 
 export const changeLoadingAllPosts = (payload: boolean): AppActions => ({
-  type: 'LOADING_ALL_POSTS',
+  type: LOADING_ALL_POSTS,
   payload,
 });
 
 export const changeLoadingSinglePost = (payload: boolean): AppActions => ({
-  type: 'LOADING_SINGLE_POST',
+  type: LOADING_SINGLE_POST,
   payload,
 });
 
 export const changeAuthError = (payload: boolean): AppActions => ({
-  type: 'AUTHENTICATION_ERROR',
+  type: AUTHENTICATION_ERROR,
   payload,
 });
 
 export const setUserData = (user: IAuth): AppActions => ({
-  type: 'SET_USER_DATA',
+  type: SET_USER_DATA,
   user,
 });
 
 export const logOut = (): AppActions => ({
-  type: 'LOG_OUT',
+  type: LOG_OUT,
 });
 
 export const addArticleTag = (payload: string[]): AppActions => ({
-  type: 'ADD_POST_TAG',
+  type: ADD_POST_TAG,
   payload,
 });
 
 export const changeFavotitesPost = (payload: object): AppActions => ({
-  type: 'FAVORITE_POST',
+  type: FAVORITE_POST,
   payload,
 });
 

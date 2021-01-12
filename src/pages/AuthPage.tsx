@@ -15,9 +15,10 @@ const AuthPage: React.FC<IReg> = () => {
 
   const onSubmit = (data: any) => {
     const { email, password } = data;
+    console.log(email)
     const userCredentials = {
       user: {
-        email,
+        email: email.toLocaleLowerCase(),
         password,
       },
     };
