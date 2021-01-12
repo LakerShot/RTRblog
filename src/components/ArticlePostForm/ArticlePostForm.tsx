@@ -12,8 +12,8 @@ const ArticlePostForm: React.FC<IPostForm> = ({ submit, legend, postTags, }): JS
   const [tags, setTags] = useState<string[]>([]);
   const [value, setValue] = useState<string>('');
   const { register, handleSubmit, errors } = useForm();
-  const state = useSelector((state: any) => state.post);
-  console.log(state)
+  // const state = useSelector((state: any) => state.post);
+  // console.log(state)
   const dispatch = useDispatch();
 
   useEffect(() => {
