@@ -1,8 +1,9 @@
+import { ADD_POST_TAG } from './../types/actions';
 const ArticlePostTagsReducerDefaultState: string[] = [];
 
 export default (state = ArticlePostTagsReducerDefaultState, action: any): string[] => {
   switch (action.type) {
-    case 'ADD_POST_TAG':
+    case ADD_POST_TAG:
       return action.payload;
     default:
       return state;
