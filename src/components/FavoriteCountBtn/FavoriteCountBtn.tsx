@@ -2,11 +2,12 @@ import React from 'react';
 import { Tooltip } from 'antd';
 import { HeartOutlined, HeartFilled } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeFavotitesPost } from '../../actions/actions';
+import { changeFavotitesPost } from '../../redux/actions/actions';
 import servicesApi from '../../services/servicesAPI';
+import { BlogState } from '../../types/interfaces';
 
 const FavoriteCountBtn: React.FC<any> = ({ count, slug, favorited }): JSX.Element => {
-  const { isAuth, user } = useSelector((state: any) => state.isAuthentication);
+  const { isAuth, user } = useSelector((state: BlogState) => state.isAuthentication);
   const token = isAuth && user.token;
   const dispatch = useDispatch();
 

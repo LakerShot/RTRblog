@@ -1,24 +1,28 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography, Avatar, Spin } from 'antd';
-import { ISlug } from '../types/interfaces';
-import { getSinglePostRequest } from '../actions/actions';
+import { BlogState, ISlug } from '../types/interfaces';
+import { getSinglePostRequest } from '../redux/actions/actions';
 import ChangePostButtons from '../components/ChangePostButtons';
 import FavoriteCountBtn from '../components/FavoriteCountBtn';
 
+interface MatchParams {
+  slug: string;
+}
+
 const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
   const dispatch = useDispatch();
-  const { isAuth, user } = useSelector((state: any) => state.isAuthentication);
+  const { isAuth, user } = useSelector((state: BlogState) => state.isAuthentication);
   const { Title, Paragraph } = Typography;
-  const token = isAuth && user.token;
   const { post, isFetchingSinglePost, favoritePostsCount } = useSelector((state: any) => state);
   const { title, body, createdAt, favoritesCount, favorited, tagList, description, author } = post;
+  const token = isAuth && user.token;
 
   useEffect(() => {
     dispatch(getSinglePostRequest(match.params.slug, token));
   }, [dispatch, match.params.slug, token, favoritePostsCount]);
 
-  const localStorageData: any = localStorage.getItem('login');
+  const localStorageData = localStorage.getItem('login') as string;
   const authUser: any = localStorageData && JSON.parse(localStorageData).user.username;
   const authToken: any = localStorageData && JSON.parse(localStorageData).user.token;
 
@@ -34,10 +38,6 @@ const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
 
   const content: any = !isFetchingSinglePost && (
     <div className="article-container">
-      {/* {authUser && authUser === author.username && (
-        <ChangePostButtons slug={match.params.slug} token={authToken} />
-      )} */}
-
       <div className="post d-flex justify-content-between">
         <div className="d-flex">
           <Title className="pr-3" level={4}>
@@ -53,9 +53,6 @@ const ArticlePage: React.FC<ISlug> = ({ match }: any) => {
           </div>
           <div />
           <Avatar src={author.image} alt="Han Solo" />
-          {/* {authUser && authUser === author.username && (
-           <ChangePostButtons slug={match.params.slug} token={authToken} />
-          )} */}
         </div>
       </div>
       <div className="d-flex justify-content-between">

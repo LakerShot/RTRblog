@@ -1,6 +1,6 @@
-import { ADD_POSTS, FAVORITE_POST } from './../types/actions';
+import { ADD_POSTS, FAVORITE_POST } from '../../types/actions';
 /* eslint-disable no-fallthrough */
-import { IPosts } from '../types/interfaces';
+import { IPosts } from '../../types/interfaces';
 
 const AddPostsReducerDefaultState: IPosts[] = [];
 

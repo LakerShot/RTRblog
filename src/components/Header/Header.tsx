@@ -2,16 +2,17 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { PageHeader, Button } from 'antd';
-import { logOut } from '../../actions/actions';
 import './Header.sass';
 import userLogoNotFound from '../../assets/userLogo.svg';
+import { logOut } from '../../redux/actions/actions';
+import { BlogState } from '../../types/interfaces';
 
 const Header: React.FC = (): JSX.Element => {
-  const { isAuth, user } = useSelector((state: any) => state.isAuthentication);
+  const { isAuth, user } = useSelector((state: BlogState) => state.isAuthentication);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userAvatars: any = isAuth && (user.image ? user.image : userLogoNotFound);
+  const userAvatars: string = isAuth && (user.image ? user.image : userLogoNotFound);
 
   const handlerLogOut = () => {
     localStorage.removeItem('login');

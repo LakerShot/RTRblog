@@ -1,3 +1,5 @@
+// import { IPosts } from '../redux/types/interfaces';
+
 export interface IPosts {
   title: string;
   author: any;
@@ -28,5 +30,33 @@ export interface IReg {
 
 export interface IAuth {
   isAuth: boolean;
-  user: object | null;
+  user: User | object | null | any;
+}
+interface User {
+  [key: string]: CurrentUser;
+}
+
+interface Post {
+  [key: string]: IPosts;
+}
+
+export interface CurrentUser {
+  id?: number;
+  email?: string;
+  createdAt?: any;
+  updatedAt?: any;
+  username: string;
+  bio: any;
+  image: string;
+  token: string;
+}
+
+export interface BlogState {
+  posts: IPosts[] | null;
+  post: IPosts | null;
+  isFetchingAllPosts: boolean;
+  isFetchingSinglePost: boolean;
+  isAuthentication: IAuth;
+  isAuthError: boolean;
+  articlesPostTags: Array<string>;
 }

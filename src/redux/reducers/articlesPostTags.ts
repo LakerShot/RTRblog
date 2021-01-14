@@ -1,4 +1,5 @@
-import { ADD_POST_TAG } from './../types/actions';
+import { ADD_POST_TAG } from '../../types/actions';
+
 const ArticlePostTagsReducerDefaultState: string[] = [];
 
 export default (state = ArticlePostTagsReducerDefaultState, action: any): string[] => {

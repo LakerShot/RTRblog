@@ -1,6 +1,6 @@
-import { SET_USER_DATA, LOG_OUT } from './../types/actions';
-import { IAuth } from './../types/interfaces';
 import isEmpty from 'lodash.isempty';
+import { SET_USER_DATA, LOG_OUT } from '../../types/actions';
+import { IAuth } from '../../types/interfaces';
 
 const isAuthenticationReducerDefaultState: IAuth = {
   isAuth: false,

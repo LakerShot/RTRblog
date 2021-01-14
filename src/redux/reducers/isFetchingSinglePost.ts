@@ -1,5 +1,6 @@
-import { LOADING_SINGLE_POST } from './../types/actions';
-const isFetchingSingleReducerDefaultState: boolean = true;
+import { LOADING_SINGLE_POST } from '../../types/actions';
+
+const isFetchingSingleReducerDefaultState = true;
 
 export default (state = isFetchingSingleReducerDefaultState, action: any): boolean => {
   switch (action.type) {

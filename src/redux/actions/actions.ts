@@ -1,9 +1,18 @@
-import { IAuth } from './../types/interfaces';
-import { AppActions, ADD_POSTS, ADD_SINGLE_POST, LOADING_ALL_POSTS, LOADING_SINGLE_POST, AUTHENTICATION_ERROR, SET_USER_DATA, LOG_OUT, ADD_POST_TAG, FAVORITE_POST } from './../types/actions';
 import { Dispatch } from 'redux';
-import ServicesApi from '../services/servicesAPI';
-
-import { IPosts } from '../types/interfaces';
+import { IAuth, IPosts } from '../../types/interfaces';
+import {
+  AppActions,
+  ADD_POSTS,
+  ADD_SINGLE_POST,
+  LOADING_ALL_POSTS,
+  LOADING_SINGLE_POST,
+  AUTHENTICATION_ERROR,
+  SET_USER_DATA,
+  LOG_OUT,
+  ADD_POST_TAG,
+  FAVORITE_POST,
+} from '../../types/actions';
+import ServicesApi from '../../services/servicesAPI';
 
 export const addPost = (posts: Array<IPosts>): AppActions => ({
   type: ADD_POSTS,
@@ -49,9 +58,7 @@ export const changeFavotitesPost = (payload: object): AppActions => ({
   payload,
 });
 
-export const getPostRequest = (offset: number, token: string | null) => (
-  dispatch: Dispatch
-): void => {
+export const getPostRequest = (offset: number, token: string | null) => (dispatch: Dispatch): void => {
   dispatch(changeLoadingAllPosts(true));
   const request = new ServicesApi();
   request.getRequestArticles(offset, token).then((data) => {
@@ -60,9 +67,7 @@ export const getPostRequest = (offset: number, token: string | null) => (
   });
 };
 
-export const getSinglePostRequest = (slug: string, token: string | null) => (
-  dispatch: Dispatch
-): void => {
+export const getSinglePostRequest = (slug: string, token: string | null) => (dispatch: Dispatch): void => {
   dispatch(changeLoadingSinglePost(true));
   const request = new ServicesApi();
   request.getRequestSingleArticle(slug, token).then((data) => {

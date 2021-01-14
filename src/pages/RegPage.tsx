@@ -18,15 +18,11 @@ const RegistrationPage: React.FC<IReg> = () => {
 
   const history = useHistory();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IReg) => {
     const api = new ServicesApi();
     const { name, email, password } = data;
     const result = {
-      user: {
-        username: name,
-        email,
-        password,
-      },
+      user: { username: name, email, password },
     };
     api
       .registration(result)

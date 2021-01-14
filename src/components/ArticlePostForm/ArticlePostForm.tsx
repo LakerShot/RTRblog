@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { addArticleTag } from '../../actions/actions';
+import { addArticleTag } from '../../redux/actions/actions';
+import { BlogState } from '../../types/interfaces';
 
 interface IPostForm {
   submit: any;
@@ -13,8 +14,7 @@ const ArticlePostForm: React.FC<IPostForm> = ({ submit, legend, postTags }): JSX
   const [tags, setTags] = useState<string[]>([]);
   const [value, setValue] = useState<string>('');
   const { register, handleSubmit, errors } = useForm();
-  const state = useSelector((state: any) => state.post);
-  // console.log(state)
+  const state = useSelector((state: BlogState) => state.post);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,8 +25,8 @@ const ArticlePostForm: React.FC<IPostForm> = ({ submit, legend, postTags }): JSX
     return `${new Date().getTime()}_${pre}`;
   };
 
-  const onChangeTagValue = (e: any): void => {
-    setValue(e.target.value);
+  const onChangeTagValue = (event: { target: HTMLInputElement }): void => {
+    setValue(event.target.value);
   };
 
   const onSubmitNewTask = (e: any): void => {
