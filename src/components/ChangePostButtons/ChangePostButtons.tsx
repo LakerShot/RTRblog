@@ -3,7 +3,12 @@ import { Link, useHistory } from 'react-router-dom';
 import { Modal, Button } from 'antd';
 import ServicesApi from '../../services/servicesAPI';
 
-const ChangePostButtons: React.FC<any> = ({ slug, token }): JSX.Element => {
+interface IProps {
+  slug: string;
+  token: string;
+}
+
+const ChangePostButtons: React.FC<IProps> = ({ slug, token }): JSX.Element => {
   const [visible, setVisible] = useState(false);
 
   const api = new ServicesApi();

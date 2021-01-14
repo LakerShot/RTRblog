@@ -3,19 +3,18 @@ import { useForm } from 'react-hook-form';
 import { Alert } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import { login } from '../actions/actions';
-import { IReg } from '../types/interfaces';
+import { BlogState, IReg } from '../types/interfaces';
+import { login } from '../redux/actions/actions';
 
 const AuthPage: React.FC<IReg> = () => {
   const dispatch = useDispatch();
-  const { isAuth } = useSelector((state: any) => state.isAuthentication);
-  const { isAuthError } = useSelector((state: any) => state);
+  const { isAuth } = useSelector((state: BlogState) => state.isAuthentication);
+  const { isAuthError } = useSelector((state: BlogState) => state);
 
   const { register, handleSubmit, errors } = useForm<IReg>();
 
   const onSubmit = (data: any) => {
     const { email, password } = data;
-    console.log(email);
     const userCredentials = {
       user: {
         email: email.toLocaleLowerCase(),
@@ -39,7 +38,6 @@ const AuthPage: React.FC<IReg> = () => {
       <div className="form">
         <form className="register-form" onSubmit={handleSubmit(onSubmit)}>
           <h1 className="form__title">Sign In</h1>
-
           <input
             className="form__input"
             placeholder="Email"
@@ -62,7 +60,7 @@ const AuthPage: React.FC<IReg> = () => {
               maxLength: 40,
             })}
           />
-          {errors.password && <span className="no-valid">Password must have at least from 8 to 40 characters</span>}
+          {errors.password && <span className="no-valid">Password must have at least from 6 to 40 characters</span>}
           <button className="submit-btn">login</button>
           <p className="message">
             Don't have accaunt ? <Link to="/sign-up">Sign Up</Link>

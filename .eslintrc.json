@@ -88,21 +88,14 @@
     "import/prefer-default-export": "off",
     "react/no-unescaped-entities": "off",
     "jsx-a11y/click-events-have-key-events": "off",
-    " jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
     // "semi": [2, "never"],
     "react/jsx-filename-extension": "off",
-    "import/extensions": [
-      "warn",
-      "ignorePackages",
-      {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
-      }
-    ],
+    "@typescript-eslint/class-name-casing": "off",
+    "import/extensions": "off",
     "import/resolver": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
   },
   "settings": {
     "react": {

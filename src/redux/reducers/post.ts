@@ -1,5 +1,5 @@
-import { ADD_SINGLE_POST, FAVORITE_POST } from './../types/actions';
-import { IPosts } from './../types/interfaces';
+import { ADD_SINGLE_POST, FAVORITE_POST } from '../../types/actions';
+import { IPosts } from '../../types/interfaces';
 
 const AddSinglePostReducerDefaultState: IPosts[] = [];
 

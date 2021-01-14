@@ -12,8 +12,6 @@ import PrivateRoute from '../helpers/PrivateRoute';
 import DefaultRoute from '../helpers/DefaultRoute';
 
 const PagesContainer: React.FC = (): JSX.Element => {
-  const NotFoundPage: JSX.Element = <Result status="404" title="404" subTitle="Sorry, this page does not exist :(" />;
-
   return (
     <Switch>
       <DefaultRoute path="/" component={ArticlesListPage} exact />
@@ -24,7 +22,7 @@ const PagesContainer: React.FC = (): JSX.Element => {
       <PrivateRoute path="/profile" component={ProfilePage} exact />
       <PrivateRoute path="/new-article" component={NewArticlePage} />
       <PrivateRoute path="/articles/:slug/edit" component={EditArticlePage} exact />
-      <Route render={() => NotFoundPage} />
+      <Route render={() => <Result status="404" title="404" subTitle="Sorry, this page does not exist :(" />} />
     </Switch>
   );
 };

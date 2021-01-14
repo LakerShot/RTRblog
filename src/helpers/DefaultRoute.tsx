@@ -6,7 +6,7 @@ export default ({ component: Component, ...rest }: any) => {
   return (
     <Route
       {...rest}
-      render={(props) =>
+      render={() =>
         history.location.pathname === '/' && (
           <Redirect
             to={{

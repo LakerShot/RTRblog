@@ -3,29 +3,22 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { Alert } from 'antd';
 import ServicesApi from '../services/servicesAPI';
+import { BlogState } from '../types/interfaces';
 
 const ProfilePage: React.FC = (): JSX.Element => {
   const [succes, setSucces] = useState<boolean | null>(null);
   const [error, setError] = useState<boolean | null>(null);
-
-  const state = useSelector((state: any) => state.isAuthentication);
-
-  const { isAuth, user } = state;
-
-  const userInfo: any = isAuth && user;
+  const state = useSelector((state: BlogState) => state.isAuthentication);
 
   const { register, handleSubmit, errors } = useForm();
+  const { isAuth, user } = state;
+  const userInfo: any = isAuth && user;
 
   const onSubmit = (data: any) => {
     const api = new ServicesApi();
     const { username, email, image, bio } = data;
     const result = {
-      user: {
-        username,
-        email,
-        image,
-        bio,
-      },
+      user: { username, email, image, bio },
     };
 
     api

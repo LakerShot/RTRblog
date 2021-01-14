@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUserData } from '../actions/actions';
+import { setUserData } from '../redux/actions/actions';
 import storageCollector from '../services/storageCollector';
 import Header from '../components/Header';
 import PagesContainer from './PagesContainer';
